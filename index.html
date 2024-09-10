@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./style.css">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="screen">
+            <input type="text" class="display" disabled>
+        </div>
+        <div class="buttons">
+            <div class="btn-1">
+                <button onclick="calculator(this)" class="operator" value="AC">AC</button>
+                <button onclick="calculator(this)" class="operator" value="DE">Del</button>
+                <button onclick="calculator(this)" class="operator" value="%">%</button>
+                <button onclick="calculator(this)" class="operator" value="/">÷</button>
+            </div>
+            <div class="btn-2">
+                <button onclick="calculator(this)" value="7">7</button>
+                <button onclick="calculator(this)" value="8">8</button>
+                <button onclick="calculator(this)" value="9">9</button>
+                <button onclick="calculator(this)" class="operator" value="*">*</button>
+            </div>
+            <div class="btn-3">
+                <button onclick="calculator(this)" value="4">4</button>
+                <button onclick="calculator(this)" value="5">5</button>
+                <button onclick="calculator(this)" value="6">6</button>
+                <button onclick="calculator(this)" class="operator" value="-">-</button>
+            </div>
+            <div class="btn-4">
+                <button onclick="calculator(this)" value="1">1</button>
+                <button onclick="calculator(this)" value="2">2</button>
+                <button onclick="calculator(this)" value="3">3</button>
+                <button onclick="calculator(this)" class="operator" value="+">+</button>
+            </div>
+            <div class="btn-5">
+                <button onclick="calculator(this)" value="0">0</button>
+                <button onclick="calculator(this)" value="00">00</button>
+                <button onclick="calculator(this)" value=".">.</button>
+                <button onclick="calculator(this)" class="operator" value="=">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
