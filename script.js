@@ -112,8 +112,17 @@ function deleteL() {
 // หน้าจอ
 function formatDisplay() {
     if (preInput === '' && curInput === '') return '0'; // ถ้าไม่มีข้อมูล ให้แสดง 0
-    if (operator === '') return curInput; // ถ้าไม่มีตัวดำเนินการ ให้แสดงค่าปัจจุบัน
+    if (operator === '') return numberWithCommas(curInput); // ถ้าไม่มีตัวดำเนินการ ให้แสดงค่าปัจจุบัน
 
     // แสดงข้อมูลการคำนวณทั้งหมด (เช่น 1 + 5)
-    return `${preInput} ${operator} ${curInput}`;
+    return `${numberWithCommas(preInput)} ${operator} ${numberWithCommas(curInput)}`;
+}
+
+//เอามาจาก stackOverflow ><
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
 }
