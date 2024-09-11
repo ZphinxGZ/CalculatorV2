@@ -73,26 +73,36 @@ function calcuResult() {
     // ตรวจข้อมูล
     if (preInput === '' || curInput === '' || operator === '') return;
     const prev = parseFloat(preInput);
-    const curr = parseFloat(curInput);
-    let result;
+     num2 = parseFloat(curInput);
     
     switch (operator) {
         case '+':
-            result = prev + curr;
+            result = prev + num2;
             break;
         case '-':
-            result = prev - curr;
+            result = prev - num2;
             break;
         case '*':
-            result = prev * curr;
+            result = prev * num2;
             break;
         case '/':
-            result = prev / curr;
+            result = prev / num2;
             break;
     }
     curInput = result.toString(); // แปลงป็นสตริง
-    operator = ''; 
+    curInput = result
     preInput = ''; 
+    operator = ''; 
+}
+
+// หน้าจอ
+function formatDisplay() {
+    if (preInput === '' && curInput === '') return '0'; // ถ้าไม่มีข้อมูล ให้แสดง 0
+    if (operator === '') return numberWithCommas(curInput); // ถ้าไม่มีตัวดำเนินการ ให้แสดงค่าปัจจุบัน
+
+    // แสดงข้อมูลการคำนวณทั้งหมด (เช่น 1 + 5)
+    return `${numberWithCommas(preInput)}${operator}${numberWithCommas(curInput)}`
+    //${numberWithCommas(preInput)} ${operator}  
 }
 
 // ฟังก์ชันเพื่อทำการล้างข้อมูลทั้งหมด
@@ -109,14 +119,7 @@ function deleteL() {
     }
 }
 
-// หน้าจอ
-function formatDisplay() {
-    if (preInput === '' && curInput === '') return '0'; // ถ้าไม่มีข้อมูล ให้แสดง 0
-    if (operator === '') return numberWithCommas(curInput); // ถ้าไม่มีตัวดำเนินการ ให้แสดงค่าปัจจุบัน
 
-    // แสดงข้อมูลการคำนวณทั้งหมด (เช่น 1 + 5)
-    return `${numberWithCommas(preInput)} ${operator} ${numberWithCommas(curInput)}`;
-}
 
 //เอามาจาก stackOverflow ><
 function numberWithCommas(x) {
@@ -126,3 +129,31 @@ function numberWithCommas(x) {
         x = x.replace(pattern, "$1,$2");
     return x;
 }
+
+const checkKeyboard = (e) => {
+    if (e.key === 'Enter') {
+        manageOpera('=');
+    } else if (e.key === 'Escape') {
+        manageOpera('AC');
+    } else if (e.key === '+' || e.key === '=') {
+        manageOpera('+');
+    } else if (e.key === '-') {
+        manageOpera('-');
+    } else if (e.key === '*') {
+        manageOpera('*');
+    } else if (e.key === '/') {
+        manageOpera('/');
+    } else if (e.key >= '0' && e.key <= '9') {
+        appendNum(e.key);
+    } else if (e.key === '%') {
+        manageOpera('%');
+    } else if (e.key === 'Backspace') {
+        manageOpera('DE');
+    }
+    document.querySelector('.display').value = formatDisplay();
+}
+
+ document.addEventListener("DOMContentLoaded", () =>{
+    document.addEventListener('keydown', checkKeyboard)
+ })
+
