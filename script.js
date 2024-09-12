@@ -14,7 +14,6 @@ function calculator(button) {
     // อัปเดตหน้าจอ
     display.value = formatDisplay();
 }
-
 // ฟังก์ชันเพื่อจัดการการป้อนตัวเลข
 function appendNum(value) {
     // ป้องกันการป้อนเลข 0 ที่นำหน้า
@@ -27,7 +26,6 @@ function appendNum(value) {
         curInput = curInput + value;
     }
 }
-
 // ฟังก์ชันจัดการตัวดำเนินการ (+, -, *, /, AC, DE, %)
 function manageOpera(value) {
     switch (value) {
@@ -48,7 +46,6 @@ function manageOpera(value) {
             break;
     }
 }
-
 // จัดการตัวดำเนินการ (+, -, *, /)
 function basicOpera(value) {
     // ป้องกันการป้อนตัวดำเนินการโดยไม่มีตัวเลข
@@ -61,13 +58,11 @@ function basicOpera(value) {
     preInput = curInput; 
     curInput = ''; 
 }
-
 // ฟังก์ชันเพื่อคำนวณเปอร์เซ็นต์
 function percentCal() {
     if (curInput === '') return;
     curInput = (parseFloat(curInput) / 100).toString(); // คำนวณเปอร์เซ็นต์ แปลงเป็นสตริง
 }
-
 // ฟังก์ชันเพื่อคำนวณผลลัพธ์
 function calcuResult() {
     // ตรวจข้อมูล
@@ -90,11 +85,9 @@ function calcuResult() {
             break;
     }
     curInput = result.toString(); // แปลงป็นสตริง
-    curInput = result
     preInput = ''; 
     operator = ''; 
 }
-
 // หน้าจอ
 function formatDisplay() {
     if (preInput === '' && curInput === '') return '0'; // ถ้าไม่มีข้อมูล ให้แสดง 0
@@ -104,23 +97,18 @@ function formatDisplay() {
     return `${numberWithCommas(preInput)}${operator}${numberWithCommas(curInput)}`
     //${numberWithCommas(preInput)} ${operator}  
 }
-
 // ฟังก์ชันเพื่อทำการล้างข้อมูลทั้งหมด
 function allClear() {
     curInput = '';
     preInput = '';
     operator = '';
 }
-
 // ปุ่ม DE
 function deleteL() {
     if (curInput.length > 0) {
         curInput = curInput.slice(0, -1); // ลบตัวเลขตัวสุดท้าย
     }
 }
-
-
-
 //เอามาจาก stackOverflow ><
 function numberWithCommas(x) {
     x = x.toString();
@@ -129,30 +117,28 @@ function numberWithCommas(x) {
         x = x.replace(pattern, "$1,$2");
     return x;
 }
-
 const checkKeyboard = (e) => {
     if (e.key === 'Enter') {
-        manageOpera('=');
+        manageOpera('=')
     } else if (e.key === 'Escape') {
-        manageOpera('AC');
+        manageOpera('AC')
     } else if (e.key === '+' || e.key === '=') {
-        manageOpera('+');
+        manageOpera('+')
     } else if (e.key === '-') {
-        manageOpera('-');
+        manageOpera('-')
     } else if (e.key === '*') {
-        manageOpera('*');
+       manageOpera('*')
     } else if (e.key === '/') {
-        manageOpera('/');
+       manageOpera('/')
     } else if (e.key >= '0' && e.key <= '9') {
-        appendNum(e.key);
+        appendNum(e.key)
     } else if (e.key === '%') {
-        manageOpera('%');
+        manageOpera('%')
     } else if (e.key === 'Backspace') {
-        manageOpera('DE');
+        manageOpera('DE')
     }
     document.querySelector('.display').value = formatDisplay();
 }
-
  document.addEventListener("DOMContentLoaded", () =>{
     document.addEventListener('keydown', checkKeyboard)
  })
